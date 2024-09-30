@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
     <title>poorhub</title>
+    <meta name="title" content="poorhub" />
+    <meta name="description" content="multipurpose bot made for managing every aspect of your server. You can also invite poorhub vanity for accessing the vanity module. Support server - discord.gg/rinsed Coded and managed by - gator2x" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://poorhub.site/" />
+    <meta property="og:title" content="poorhub" />
+    <meta property="og:description" content="multipurpose bot made for managing every aspect of your server. You can also invite poorhub vanity for accessing the vanity module. Support server - discord.gg/rinsed Coded and managed by - gator2x" />
+    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://poorhub.site/" />
+    <meta property="twitter:title" content="poorhub" />
+    <meta property="twitter:description" content="multipurpose bot made for managing every aspect of your server. You can also invite poorhub vanity for accessing the vanity module. Support server - discord.gg/rinsed Coded and managed by - gator2x" />
+    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+
     <link rel="stylesheet" href="static/styles.css"> <!-- Link to the external CSS file -->
     <style>
         /* Loading Screen Styles */
@@ -78,7 +97,6 @@
                     <h3>{{ command.name }}</h3>
                     <p>{{ command.description }}</p>
                     <p class="usage">Usage: {{ command.usage }}</p>
-                    <p class="params">Parameters: {{ command.params or "none" }}</p>
                     <p class="aliases">Aliases: {{ command.aliases|join(', ') or "none" }}</p>
                     <p class="permissions">Permissions: {{ command.permissions or "none" }}</p>
                     <button class="copy-button" onclick="copyToClipboard('{{ command.name }}', this)">Copy</button>
