@@ -74,7 +74,7 @@
             background-position: center;
             color: #ffffff;
             margin: 0;
-            padding: 20px 120px; /* Padding on left and right */
+            padding: 20px; /* Padding on left and right */
         }
 
         h1 {
@@ -269,14 +269,8 @@
         <img src="static/logo.png" alt="Bot Logo" class="loading-logo">
     </div>
 
-    <div id="main-content"> <!-- Main Content Wrapper -->
-        <a href="https://discord.com/oauth2/authorize?client_id=1081554701897711657&permissions=8&integration_type=0&scope=bot" target="_blank">
-            <img src="static/logo.png" alt="Bot Logo" class="logo">
-        </a>
-    </div>
-     <!-- Bot Logo outside loading -->
-
         <h1>Commands</h1>
+
 
 
 
@@ -305,6 +299,15 @@
 
         <!-- Back to Top Button -->
         <button id="back-to-top" onclick="scrollToTop()">▲</button>
+        <!-- Music Mute Button -->
+        <audio id="background-music" autoplay loop>
+            <source src="static/track.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    
+        <!-- Music Mute Button -->
+        <button id="music-mute" onclick="toggleMute()">🔇</button>
+
 
         <!-- Search Modal -->
         <div id="search-modal">
@@ -318,19 +321,19 @@
     <script>
         // Loading screen functionality
         window.onload = function() {
+            const loadingScreen = document.getElementById('loading-screen');
             const mainContent = document.getElementById('main-content');
-            mainContent.style.visibility = 'hidden';
+
+            // Hide the loading screen and display the main content after a delay
             setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                loadingScreen.style.opacity = 0;
+                loadingScreen.style.opacity = 0;  // Fade out the loading screen
 
                 setTimeout(() => {
-                    loadingScreen.style.display = 'none';
-                    mainContent.style.visibility = 'visible';
-                }, 500);
-            }, 1000);
+                    loadingScreen.style.display = 'none';  // Hide the loading screen
+                    mainContent.style.visibility = 'visible';  // Show the main content
+                }, 500);  // Match the transition duration (0.5s = 500ms)
+            }, 1000);  // Delay before starting the fade-out (adjust this as needed)
         };
-
         // Default category handling
         const buttons = document.querySelectorAll('.category-button');
         const categories = document.querySelectorAll('.category');
@@ -346,6 +349,30 @@
                 cat.style.display = cat.id === category ? 'block' : 'none';
             });
         }
+        const audioElement = document.getElementById('background-music');
+        const muteButton = document.getElementById('music-mute');
+
+        function toggleMute() {
+            if (audioElement.muted) {
+                audioElement.muted = false;
+                muteButton.textContent = '🔇'; // Change icon to indicate sound is playing
+            } else {
+                audioElement.muted = true;
+                muteButton.textContent = '🔊'; // Change icon to indicate sound is muted
+            }
+        }
+
+        // Show button when user scrolls or reaches the top of the page
+        window.onscroll = function() {
+            const muteButton = document.getElementById('music-mute');
+            if (window.scrollY > 100) {
+                muteButton.style.display = 'block';
+                muteButton.classList.add('glow');
+            } else {
+                muteButton.style.display = 'none';
+                muteButton.classList.remove('glow');
+            }
+        };
 
         // Search functionality
 
