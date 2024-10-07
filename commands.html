@@ -163,6 +163,7 @@
                 opacity: 0;
             }
         }
+        
         .poorhub-link {
             position: absolute; /* Absolute positioning */
             top: 20px; /* Space from the top */
@@ -175,6 +176,52 @@
 
         .poorhub-link:hover {
             color: #8e44ad; /* Darker color on hover */
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em; /* Reduce title size for smaller screens */
+            }
+
+            .category-button {
+                flex: 1 1 calc(100% - 10px); /* Full width for buttons */
+                margin: 5px 0; /* Adjust margins */
+                padding: 10px; /* Increase padding for touch targets */
+            }
+
+            .command-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 commands per row on tablets */
+            }
+
+            .command {
+                font-size: 0.9em; /* Slightly reduce font size */
+            }
+
+            .copy-icon {
+                width: 16px; /* Smaller icon for mobile */
+                height: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .command-container {
+                grid-template-columns: 1fr; /* 1 command per row on mobile */
+            }
+
+            h1 {
+                font-size: 1.5em; /* Further reduce title size for small screens */
+            }
+
+            .command-category {
+                font-size: 1.2em; /* Reduce category font size */
+            }
+
+            .poorhub-link {
+                font-size: 1.2em; /* Reduce link size */
+                top: 15px; /* Adjust top position */
+                left: 15px; /* Adjust left position */
+            }
         }
     </style>
 </head>
@@ -212,68 +259,62 @@
 
                 // Function to toggle command visibility
                 function toggleCommands(category) {
-                    // Hide all command lists first
-                    const allCommandLists = document.querySelectorAll('.commands');
-                    allCommandLists.forEach(list => list.style.display = 'none');
+                    // Hide all command lists
+                    const allCommands = document.querySelectorAll('.commands');
+                    allCommands.forEach(cmd => cmd.style.display = 'none');
 
-                    const commandList = document.getElementById(`commands-${category}`);
-                    if (commandList) {
-                        commandList.style.display = commandList.style.display === 'block' ? 'none' : 'block';
+                    // Show commands for the selected category
+                    if (!document.getElementById(`commands-${category}`)) {
+                        createCommandList(category, buttons[category]);
                     } else {
-                        const newCommandList = document.createElement('div');
-                        newCommandList.id = `commands-${category}`;
-                        newCommandList.className = 'commands';
-                        newCommandList.innerHTML = `<h2 class="command-category">${category}</h2>`;
-                        
-                        // Create a container for commands
-                        const commandDivContainer = document.createElement('div');
-                        commandDivContainer.className = 'command-container';
-
-                        buttons[category].forEach(cmd => {
-                            const commandDiv = document.createElement('div');
-                            commandDiv.className = 'command';
-                            commandDiv.innerHTML = `<strong>${cmd.name}</strong><em>${cmd.description}</em><em>Usage: ${cmd.usage}</em><em>Permissions: ${cmd.permissions}</em>`;
-
-                            // Create and append the copy icon
-                            const copyIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                            copyIcon.setAttribute("class", "copy-icon");
-                            copyIcon.setAttribute("viewBox", "0 0 24 24");
-                            copyIcon.innerHTML = `<path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H5V5h14v16zM7 7h10v2H7zm0 4h10v2H7z"/>`;
-                            copyIcon.onclick = (event) => {
-                                // Create ripple effect
-                                const ripple = document.createElement('span');
-                                ripple.classList.add('ripple');
-                                commandDiv.appendChild(ripple);
-
-                                const size = 20; // Smaller size for ripple
-                                ripple.style.width = ripple.style.height = `${size}px`;
-                                ripple.style.left = `${event.clientX - commandDiv.getBoundingClientRect().left - size / 2}px`;
-                                ripple.style.top = `${event.clientY - commandDiv.getBoundingClientRect().top - size / 2}px`;
-
-                                // Change this line to only copy command name and usage
-                                navigator.clipboard.writeText(`;${cmd.name} ${cmd.usage}`)
-                                    .catch(err => {
-                                        console.error('Error copying command:', err);
-                                    });
-                            };
-
-                            commandDiv.appendChild(copyIcon);
-                            commandDivContainer.appendChild(commandDiv);
-                        });
-
-                        newCommandList.appendChild(commandDivContainer);
-                        commandContainer.appendChild(newCommandList);
-                        newCommandList.style.display = 'block';
+                        const cmdList = document.getElementById(`commands-${category}`);
+                        cmdList.style.display = cmdList.style.display === 'none' ? 'block' : 'none';
                     }
                 }
 
-                // Display the first category by default if it exists
-                const firstCategory = Object.keys(buttons)[0];
-                if (firstCategory) {
-                    toggleCommands(firstCategory);
+                // Function to create command list for a category
+                function createCommandList(category, commandList) {
+                    const commandsDiv = document.createElement('div');
+                    commandsDiv.id = `commands-${category}`;
+                    commandsDiv.className = 'commands';
+
+                    const categoryHeader = document.createElement('div');
+                    categoryHeader.className = 'command-category';
+                    categoryHeader.textContent = category;
+                    commandsDiv.appendChild(categoryHeader);
+
+                    const commandContainer = document.createElement('div');
+                    commandContainer.className = 'command-container';
+
+                    commandList.forEach(command => {
+                        const commandDiv = document.createElement('div');
+                        commandDiv.className = 'command';
+                        commandDiv.innerHTML = `<strong>${command.name}</strong><em>${command.description}</em>`;
+
+                        // Copy icon
+                        const copyIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        copyIcon.className = "copy-icon";
+                        copyIcon.setAttribute("viewBox", "0 0 24 24");
+                        copyIcon.innerHTML = `<path d="M19 3H7c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7V5h12v14zM9 8h6v2H9zm0 4h6v2H9z"/>`;
+                        copyIcon.onclick = () => copyToClipboard(command);
+                        commandDiv.appendChild(copyIcon);
+
+                        commandContainer.appendChild(commandDiv);
+                    });
+
+                    commandsDiv.appendChild(commandContainer);
+                    commandContainer.appendChild(commandsDiv);
+                    commandContainer.style.display = 'block'; // Show commands
+                    document.getElementById('command-container').appendChild(commandsDiv);
                 }
-            })
-            .catch(error => console.error('Error loading commands:', error));
+            });
+
+        // Function to copy command to clipboard
+        function copyToClipboard(command) {
+            navigator.clipboard.writeText(command.name).then(() => {
+                alert(`${command.name} copied to clipboard!`);
+            });
+        }
     </script>
 </body>
 </html>
