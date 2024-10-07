@@ -1,0 +1,54 @@
+/* Global settings */
+.container {
+    overflow-x: hidden;
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Add padding for better spacing */
+}
+
+html {
+    color: white;
+    font-family: proxima-nova, sans-serif;
+}
+
+img {
+    height: 24px;
+}
+
+body {
+    background-color: #111111;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.flex {
+    display: flex;
+    justify-content: center; /* Center items */
+    align-items: flex-start; /* Align items to start */
+    flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.command-category {
+    font-size: 24px; /* Adjust size for category title */
+    margin: 10px 0; /* Add some margin */
+}
+
+.command {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.command:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.command-container {
+    display: flex;
+    flex-direction: column; /* Stack commands vertically */
+}
