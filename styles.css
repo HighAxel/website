@@ -1,54 +1,278 @@
-/* Global settings */
-.container {
-    overflow-x: hidden;
-    margin: 0 auto; /* Center the container */
-    padding: 20px; /* Add padding for better spacing */
-}
-
-html {
-    color: white;
-    font-family: proxima-nova, sans-serif;
-}
-
-img {
-    height: 24px;
-}
-
 body {
-    background-color: #111111;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #e4e4e7; /* Light text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #9b59b6 #1f1f1f;
 }
 
-body::-webkit-scrollbar {
+.dot {
+    width: 10px;
+    height: 10px;
+    background: #9b59b6;
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
+
+/* Custom scrollbar styles for WebKit browsers */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #1f1f1f; /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9b59b6; /* Color of the scrollbar handle */
+    border-radius: 10px; /* Rounded corners for the handle */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6e5fd8; /* Darker color on hover */
+}
+
+h1 {
+    font-size: 3em;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    color: #ffffff; /* White text */
+    font-weight: 500;
+}
+#backToTop {
+    position: fixed;
+    bottom: 20px; /* Position from the bottom */
+    right: 20px; /* Position from the right */
+    width: 50px;
+    height: 50px;
+    border: 2px solid #9b59b6; /* Border color */
+    background-color: #1f1f1f; /* Background color */
+    border-radius: 50%; /* Circular shape */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    cursor: pointer; /* Change cursor to pointer */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+#backToTop:after {
+    content: '↑'; /* Up arrow */
+    font-size: 25px;
+    color: #9b59b6; /* Arrow color */
+}
+
+/* Show the button with a pixelated effect */
+#backToTop.show {
+    display: flex; /* Show the button */
+    opacity: 1; /* Fully visible */
+    animation: pixelate 0.5s forwards; /* Add pixelated animation */
+}
+
+@keyframes pixelate {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Container for category buttons */
+#button-container {
+    display: flex;
+    flex-wrap: wrap;                  /* Allow buttons to wrap to the next line */
+    align-items: center;              /* Center the buttons vertically */
+    margin-bottom: 20px;
+    background-color: rgba(31, 31, 31, 0.9); /* Box background */
+    border-radius: 25px;             /* Rounded corners for the box */
+    padding: 10px;                    /* Add some padding inside the box */
+    overflow: hidden;                 /* Hide overflow to avoid scroll */
+    width: 100%;                      /* Set to 100% to fit the width */
+    max-width: 900px;                 /* Maximum width for the button container */
+}
+
+/* Style for the buttons */
+#buttons {
+    display: flex;                   /* Use flexbox */
+    justify-content: flex-start;     /* Align buttons to the left */
+    flex-wrap: wrap;                 /* Allow buttons to wrap */
+    margin: 0;                       /* Remove margin */
+}
+
+/* Updated style for the buttons */
+.category-button {
+    padding: 12px 30px; /* Increase padding for larger buttons */
+    background: linear-gradient(135deg, #9b59b6, #6e5fd8); /* Updated gradient for a vibrant look */
+    color: #ffffff; /* White text */
+    border: none; /* Remove border */
+    border-radius: 30px; /* Slightly less rounded for a modern look */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transitions */
+    font-size: 1.1em;
+    text-transform: uppercase;
+    margin: 10px; /* Space between buttons */
+    white-space: nowrap; /* Prevent text wrapping */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    letter-spacing: 1px; /* Slight letter spacing for readability */
+    font-weight: 600; /* Slightly bolder font for emphasis */
+}
+
+/* Hover effect for buttons */
+.category-button:hover {
+    background: linear-gradient(135deg, #6e5fd8, #9b59b6); /* Inverted gradient on hover */
+    transform: translateY(-4px); /* More pronounced elevation on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+}
+
+/* Active/Selected button effect */
+.category-button:active {
+    transform: scale(0.95); /* Slight shrink on click */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Reduced shadow when pressed */
+}
+
+/* Additional styling for button text */
+.category-button span {
+    display: block; /* Block display for better alignment */
+    font-size: 1.2em; /* Larger text */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Centered text */
+}
+
+#command-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.commands {
     display: none;
 }
 
-.flex {
-    display: flex;
-    justify-content: center; /* Center items */
-    align-items: flex-start; /* Align items to start */
-    flex-wrap: wrap; /* Allow items to wrap */
-}
-
 .command-category {
-    font-size: 24px; /* Adjust size for category title */
-    margin: 10px 0; /* Add some margin */
-}
-
-.command {
-    background-color: #222;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 5px 0;
-    transition: 0.3s;
-}
-
-.command:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+    font-size: 2em;
+    color: #9b59b6; /* Purple category color */
+    margin-bottom: 10px;
 }
 
 .command-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 commands per row */
+    gap: 20px; /* Space between commands */
+}
+
+.command {
+    position: relative; /* Enable absolute positioning of the copy icon */
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #1f1f1f; /* Darker background */
+    color: #e4e4e7;
+    font-size: 1em;
+    text-align: left; /* Align text to the left */
+    transition: background-color 0.3s;
+    border: 1px solid #2d2d2d; /* Subtle border */
+}
+
+.command:hover {
+    background-color: #2d2d2d; /* Slightly lighter hover effect */
+}
+
+.command strong {
+    font-size: 1.2em;
+    margin-bottom: 5px; /* Space below command name */
+    color: #ffffff; /* White command name */
+}
+
+.command em {
+    display: block;
+    margin-top: 5px;
+    color: #9ca3af; /* Light gray for additional info */
+    font-size: 0.9em;
+}
+
+.command .category {
+    font-size: 0.9em;
+    color: #9ca3af; /* Light gray for category */
+    margin-bottom: 5px; /* Space below category name */
+}
+
+.copy-icon {
+    position: absolute; /* Positioning relative to the command card */
+    top: 10px; /* Adjust top position */
+    right: 10px; /* Adjust right position */
+    cursor: pointer; /* Change cursor to pointer */
+    fill: #9b59b6; /* Color of the copy icon */
+    width: 20px; /* Icon width */
+    height: 20px; /* Icon height */
+    transition: fill 0.3s; /* Transition for hover effect */
+}
+
+.copy-icon:hover {
+    fill: #6e5fd8; /* Darker purple on hover */
+}
+
+/* Popup Notification */
+.popup {
+    position: fixed; /* Fixed position */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position */
+    background-color: rgba(50, 50, 50, 0.9); /* Dark background with transparency */
+    color: #ffffff; /* White text */
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.2em;
+    display: none; /* Hidden by default */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.poorhub-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #9b59b6; /* Purple link */
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.poorhub-link:hover {
+    color: #8e44ad; /* Darker purple on hover */
+}
+#buttons-container {
     display: flex;
-    flex-direction: column; /* Stack commands vertically */
+    flex-wrap: wrap;
+    margin-bottom: 20px; /* Add some space below buttons */
+}
+
+#next-button, #prev-button {
+    margin-left: 10px; /* Add space between buttons */
+    background-color: transparent; /* Make it transparent */
+    border: none; /* Remove border */
+    color: #9b59b6; /* Arrow color */
+    cursor: pointer;
+    font-size: 50px; /* Size of the arrow */
+    line-height: 1; /* Align vertically with text */
+}
+.navigation-container {
+    display: flex; /* Use flexbox for alignment */
+    flex-wrap: wrap;/* Align items vertically in the center */
+    margin-top: 20px; /* Space above the navigation */
 }
