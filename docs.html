@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation</title>
+    <meta name="description" content="Documentation for Poorhub bot.">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212; /* Dark background */
+            color: #e4e4e7; /* Light text */
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #1f1f1f; /* Darker sidebar */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .sidebar h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            color: #a3a3a3;
+            text-decoration: none;
+            padding: 10px 0;
+            font-size: 1.1em;
+            display: block;
+            transition: color 0.2s ease;
+        }
+
+        .sidebar a:hover {
+            color: #fff; /* Change to white on hover */
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+
+        .main-content h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            line-height: 1.7;
+            color: #e4e4e7;
+            font-size: 1.2em;
+        }
+
+        .code-block {
+            background-color: #2d2d2d;
+            padding: 15px;
+            border-radius: 8px;
+            color: #d0d0d0;
+            font-family: monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Documentation</h2>
+        <a href="#introduction">Introduction</a>
+        <a href="#installation">Installation</a>
+        <a href="#commands">Commands</a>
+        <a href="#faq">FAQ</a>
+        <a href="#support">Support</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Introduction</h1>
+        <p>
+            Welcome to the Poorhub documentation. Here you'll find everything you need to know about using the Poorhub bot, from installation to advanced usage.
+        </p>
+
+        <h1 id="installation">Installation</h1>
+        <p>
+            To get started, invite Poorhub to your server using the invite link below:
+        </p>
+        <div class="code-block">
+            https://discord.com/oauth2/authorize?client_id=1081554701897711657&permissions=8&integration_type=0&scope=bot
+        </div>
+
+        <h1 id="commands">Commands</h1>
+        <p>
+            Poorhub offers a wide variety of commands. Below is an example of one:
+        </p>
+        <div class="code-block">
+            !poorhub help
+        </div>
+
+        <h1 id="faq">FAQ</h1>
+        <p>
+            <strong>How do I add Poorhub?</strong><br>
+            Simply use the invite link above and authorize it for your server.
+        </p>
+
+        <h1 id="support">Support</h1>
+        <p>
+            For more help, join our <a href="https://discord.gg/poorhubbot" style="color: #a3a3a3;">Discord server</a>.
+        </p>
+    </div>
+
+</body>
+</html>
