@@ -3,24 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Primary Meta Tags -->
-    <title>rival.</title>
-    <meta name="title" content="poorhub." />
+    <title>Poorhub Premium</title>
     <meta name="description" content="an aesthetically pleasing multipurpose discord bot." />
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://poorhub.site/" />
-    <meta property="og:title" content="poorhub." />
-    <meta property="og:description" content="an aesthetically pleasing multipurpose discord bot." />
-    <meta property="og:image" content="https://cdn.discordapp.com/attachments/1291486720075894898/1292886273572343889/IMG_8472.jpg?ex=67055dac&is=67040c2c&hm=e92320963c0ab3cb67cb515ef6e95d57d6403767c25c07feb51a01f0a9bef858&" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://poorhub.site/" />
-    <meta property="twitter:title" content="poorhub." />
-    <meta property="twitter:description" content="an aesthetically pleasing multipurpose discord bot." />
-    <meta property="twitter:image" content="https://cdn.discordapp.com/attachments/1291486720075894898/1292886273572343889/IMG_8472.jpg?ex=67055dac&is=67040c2c&hm=e92320963c0ab3cb67cb515ef6e95d57d6403767c25c07feb51a01f0a9bef858&" />
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -28,75 +12,81 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            height: 100vh; /* Full height of viewport */
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center vertically */
-            align-items: center; /* Center horizontally */
-            background-color: #1e1e2f; /* Dark background */
-            color: #e4e4e7; /* Light text */
-            text-align: center; /* Center text */
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Dark background */
+            color: #fff; /* White text */
+            text-align: center;
         }
 
-        h1 {
-            font-size: 3em;
-            color: #9b59b6; /* Accent color */
-            margin-bottom: 20px; /* Space below heading */
+        .logo {
+            font-size: 4em; /* Large logo text */
+            font-weight: 500;
+            color: #fff; /* White for "rival" */
+            line-height: 1; /* Adjust line height for better alignment */
         }
 
-        .button-container {
+        .logo .premium {
+            display: block; /* Puts "premium" on a new line */
+            font-size: 0.5em; /* Smaller size for "premium" */
+            color: #d0b3d7; /* Light purple for "premium" */
+            font-weight: 400;
+            margin-left: 60px; /* Aligns the "premium" text with the end of "rival" */
+        }
+
+        .nav-container {
             display: flex;
-            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
-            gap: 15px; /* Space between buttons */
-            justify-content: center; /* Center buttons horizontally */
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        .button {
-            background-color: #9b59b6; /* Button background */
-            color: white; /* Button text color */
-            border: none; /* No border */
-            border-radius: 5px;
-            padding: 10px 20px; /* Button padding */
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s; /* Add transform for hover effect */
-            text-decoration: none; /* Remove underline for links */
-            font-size: 1.2em; /* Increase font size */
+        .nav-link {
+            font-size: 1.2em;
+            color: #d0b3d7; /* Light purple links */
+            text-decoration: none;
+            text-transform: lowercase;
+            transition: color 0.3s ease;
         }
 
-        .button:hover {
-            background-color: #8e44ad; /* Darker button color on hover */
-            transform: scale(1.05); /* Slightly enlarge button on hover */
+        .nav-link:hover {
+            color: #fff; /* White on hover */
         }
 
-        /* Media Queries for Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em; /* Smaller heading on mobile */
+            .logo {
+                font-size: 3em;
             }
-            .button {
-                font-size: 1em; /* Smaller button text on mobile */
-                padding: 10px 15px; /* Adjust button padding */
+            .nav-link {
+                font-size: 1em;
             }
         }
 
         @media (max-width: 480px) {
-            h1 {
-                font-size: 2em; /* Even smaller heading on very small devices */
+            .logo {
+                font-size: 2.5em;
             }
-            .button {
-                font-size: 0.9em; /* Further reduce button text */
-                padding: 8px 12px; /* Further adjust button padding */
+            .logo .premium {
+                margin-left: 30px; /* Adjust margin for smaller screens */
+            }
+            .nav-link {
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Poorhub Premium</h1>
-    <div class="button-container">
-        <a href="https://discord.gg/poorhubbot" class="button">Discord</a>
-        <a href="https://discord.com/oauth2/authorize?client_id=1081554701897711657&permissions=8&integration_type=0&scope=bot" class="button">Invite</a>
-        <a href="commands.html" class="button">Commands</a>
-        <a href="https://embeds.rival.rocks/" class="button">Embeds</a>
+    <div class="logo">
+        poorhub<span class="premium">premium</span>
+    </div>
+    <div class="nav-container">
+        <a href="docs.html" class="nav-link">docs.</a>
+        <a href="commands.html" class="nav-link">cmds.</a>
+        <a href="https://embeds.rival.rocks/" class="nav-link">embeds.</a>
+        <a href="https://discord.gg/poorhubbot" class="nav-link">discord.</a>
     </div>
 </body>
 </html>
