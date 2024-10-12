@@ -6,189 +6,152 @@
     <title>Poorhub Commands</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Custom scrollbar styles */
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #1e1e2f; /* Dark background */
+            background-color: #121212; /* Dark background */
             color: #e4e4e7; /* Light text */
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow-y: scroll; /* Enable vertical scrolling */
-            scroll-behavior: smooth; /* Smooth scrolling */
-        }
-
-        /* Scrollbar for WebKit browsers (Chrome, Safari) */
-        body::-webkit-scrollbar {
-            width: 10px; /* Width of the scrollbar */
-        }
-
-        body::-webkit-scrollbar-track {
-            background: #222226; /* Background of the scrollbar track */
-        }
-
-        body::-webkit-scrollbar-thumb {
-            background-color: #9b59b6; /* Color of the scrollbar thumb (purple) */
-            border-radius: 10px; /* Round edges of the thumb */
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background-color: #8e44ad; /* Darker thumb color on hover */
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #9b59b6; /* Accent purple color */
+            min-height: 100vh;
             text-align: center;
         }
 
-        #buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
             margin-bottom: 20px;
+            color: #ffffff; /* White text */
+            font-weight: 500;
+        }
+
+        /* Container for category buttons */
+        #button-container {
+            display: flex;
+            flex-wrap: wrap;                  /* Allow buttons to wrap to the next line */
+            align-items: center;              /* Center the buttons vertically */
+            margin-bottom: 20px;
+            background-color: rgba(31, 31, 31, 0.9); /* Box background */
+            border-radius: 25px;             /* Rounded corners for the box */
+            padding: 10px;                    /* Add some padding inside the box */
+            overflow: hidden;                 /* Hide overflow to avoid scroll */
+            width: 100%;                      /* Set to 100% to fit the width */
+            max-width: 900px;                 /* Maximum width for the button container */
+        }
+
+        /* Style for the buttons */
+        #buttons {
+            display: flex;                   /* Use flexbox */
+            justify-content: flex-start;     /* Align buttons to the left */
+            flex-wrap: wrap;                 /* Allow buttons to wrap */
+            margin: 0;                       /* Remove margin */
         }
 
         .category-button {
-            margin: 5px;
             padding: 10px 20px;
-            background-color: #9b59b6; /* Button background */
-            color: white;
-            border: none;
-            border-radius: 5px;
+            background-color: #2c2c2e; /* Darker background color */
+            color: #ffffff; /* White button text */
+            border: 2px solid #444; /* Border color */
+            border-radius: 20px; /* Rounded borders */
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s, border-color 0.3s; /* Added border transition */
+            font-size: 1.1em;
+            text-transform: uppercase;
+            margin: 5px; /* Space between buttons */
+            white-space: nowrap; /* Prevent text wrapping */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
         }
 
         .category-button:hover {
-            background-color: #8e44ad; /* Darker button color on hover */
-            transform: scale(1.05);
+            background-color: #3c3c3e; /* Darker hover effect */
+            border-color: #6c6c6e; /* Lighter border on hover */
+            transform: scale(1.05); /* Slight scale on hover */
         }
 
         #command-container {
             width: 100%;
-            max-width: 800px;
-            overflow: hidden; /* Prevent overflow */
+            max-width: 1200px;
+            padding: 20px;
         }
 
         .commands {
-            margin-top: 20px;
-            border: 1px solid transparent; /* Transparent border for the glowing effect */
-            border-radius: 5px;
-            background-color: #222226; /* Darker card background */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            padding: 15px;
-            display: none; /* Hide all command lists initially */
-            position: relative; /* For positioning the copy icon */
-            animation: glow 1.5s infinite alternate; /* Add glowing animation */
-        }
-
-        @keyframes glow {
-            0% {
-                border-color: #9b59b6; /* Starting color of the glow */
-                box-shadow: 0 0 5px #9b59b6, 0 0 10px #9b59b6, 0 0 15px #9b59b6; /* Glowing effect */
-            }
-            100% {
-                border-color: #8e44ad; /* Ending color of the glow */
-                box-shadow: 0 0 10px #8e44ad, 0 0 20px #8e44ad, 0 0 30px #8e44ad; /* Stronger glowing effect */
-            }
+            display: none;
         }
 
         .command-category {
-            margin-bottom: 10px; /* Space between categories and commands */
-            font-size: 1.5em; /* Larger font for category header */
-            color: #9b59b6; /* Accent purple for category name */
+            font-size: 2em;
+            color: #9b59b6; /* Purple category color */
+            margin-bottom: 10px;
         }
 
         .command-container {
-            display: grid; /* Use grid for precise control */
-            grid-template-columns: repeat(3, 1fr); /* 3 commands per row */
-            gap: 10px; /* Space between commands */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+            gap: 20px;
         }
 
         .command {
-            padding: 10px;
-            border: 1px solid #444; /* Command border */
-            border-radius: 5px;
-            background-color: #2a2a30; /* Command background */
-            color: #e4e4e7; /* Light text for command */
-            font-size: 1em; /* Adjust font size */
-            text-align: center; /* Center align text */
-            position: relative; /* For positioning the copy icon */
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #1f1f1f; /* Darker background */
+            color: #e4e4e7;
+            font-size: 1em;
+            text-align: left; /* Align text to the left */
+            transition: background-color 0.3s;
+            border: 1px solid #2d2d2d; /* Subtle border */
+        }
+
+        .command:hover {
+            background-color: #2d2d2d; /* Slightly lighter hover effect */
         }
 
         .command strong {
-            display: block;
+            font-size: 1.2em;
             margin-bottom: 5px; /* Space below command name */
+            color: #ffffff; /* White command name */
         }
 
         .command em {
             display: block;
             margin-top: 5px;
-            color: #9ca3af; /* Gray for additional info */
+            color: #9ca3af; /* Light gray for additional info */
             font-size: 0.9em;
         }
 
-        .copy-icon {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            width: 20px; /* Set the width of the icon */
-            height: 20px; /* Set the height of the icon */
-            fill: #9b59b6; /* Color of the icon */
-        }
-        
-        .copy-icon:hover {
-            fill: #8e44ad; /* Darker icon color on hover */
-        }
-
-        /* Ripple effect styles */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(155, 89, 182, 0.6); /* Ripple color */
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-            pointer-events: none;
-        }
-
-        @keyframes ripple-animation {
-            to {
-                transform: scale(10); /* Smaller scale for ripple */
-                opacity: 0;
-            }
-        }
         .poorhub-link {
-            position: absolute; /* Absolute positioning */
-            top: 20px; /* Space from the top */
-            left: 20px; /* Space from the left */
-            color: #9b59b6; /* Accent color */
-            font-size: 1.5em; /* Increase font size */
-            text-decoration: none; /* Remove underline */
-            transition: color 0.3s; /* Smooth color transition */
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #9b59b6; /* Purple link */
+            font-size: 1.5em;
+            text-decoration: none;
         }
 
         .poorhub-link:hover {
-            color: #8e44ad; /* Darker color on hover */
+            color: #8e44ad; /* Darker purple on hover */
         }
     </style>
 </head>
 <body>
     <a href="index.html" class="poorhub-link">Poorhub</a>
     <h1>Commands</h1>
-    <div id="buttons"></div>
+
+    <div id="button-container">
+        <div id="buttons"></div>
+    </div>
+
     <div id="command-container"></div>
 
     <script>
+        let allCommands = []; // Store all commands for filtering
+
         // Fetch commands from commands.json
         fetch('commands.json')
             .then(response => response.json())
             .then(commands => {
+                allCommands = commands;
                 const buttons = {};
                 const commandContainer = document.getElementById('command-container');
 
@@ -201,18 +164,25 @@
                     buttons[category].push(command);
                 });
 
-                // Create category buttons
+                // Create the "All" category button
+                const allButton = document.createElement('button');
+                allButton.className = 'category-button';
+                allButton.textContent = `All (${allCommands.length})`; // Show command count
+                allButton.onclick = () => toggleAllCommands();
+                document.getElementById('buttons').appendChild(allButton);
+
+                // Create category buttons with counts
                 for (const category in buttons) {
+                    const commandCount = buttons[category].length; // Get command count for the category
                     const button = document.createElement('button');
                     button.className = 'category-button';
-                    button.textContent = category;
+                    button.textContent = `${category} (${commandCount})`; // Show category name and count
                     button.onclick = () => toggleCommands(category);
                     document.getElementById('buttons').appendChild(button);
                 }
 
-                // Function to toggle command visibility
+                // Function to toggle command visibility for a specific category
                 function toggleCommands(category) {
-                    // Hide all command lists first
                     const allCommandLists = document.querySelectorAll('.commands');
                     allCommandLists.forEach(list => list.style.display = 'none');
 
@@ -224,8 +194,7 @@
                         newCommandList.id = `commands-${category}`;
                         newCommandList.className = 'commands';
                         newCommandList.innerHTML = `<h2 class="command-category">${category}</h2>`;
-                        
-                        // Create a container for commands
+
                         const commandDivContainer = document.createElement('div');
                         commandDivContainer.className = 'command-container';
 
@@ -233,31 +202,6 @@
                             const commandDiv = document.createElement('div');
                             commandDiv.className = 'command';
                             commandDiv.innerHTML = `<strong>${cmd.name}</strong><em>${cmd.description}</em><em>Usage: ${cmd.usage}</em><em>Permissions: ${cmd.permissions}</em>`;
-
-                            // Create and append the copy icon
-                            const copyIcon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                            copyIcon.setAttribute("class", "copy-icon");
-                            copyIcon.setAttribute("viewBox", "0 0 24 24");
-                            copyIcon.innerHTML = `<path d="M19 3H5c-1.1 0-1.99.9-1.99 2L3 19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H5V5h14v16zM7 7h10v2H7zm0 4h10v2H7z"/>`;
-                            copyIcon.onclick = (event) => {
-                                // Create ripple effect
-                                const ripple = document.createElement('span');
-                                ripple.classList.add('ripple');
-                                commandDiv.appendChild(ripple);
-
-                                const size = 20; // Smaller size for ripple
-                                ripple.style.width = ripple.style.height = `${size}px`;
-                                ripple.style.left = `${event.clientX - commandDiv.getBoundingClientRect().left - size / 2}px`;
-                                ripple.style.top = `${event.clientY - commandDiv.getBoundingClientRect().top - size / 2}px`;
-
-                                // Change this line to only copy command name and usage
-                                navigator.clipboard.writeText(`;${cmd.name} ${cmd.usage}`)
-                                    .catch(err => {
-                                        console.error('Error copying command:', err);
-                                    });
-                            };
-
-                            commandDiv.appendChild(copyIcon);
                             commandDivContainer.appendChild(commandDiv);
                         });
 
@@ -267,13 +211,36 @@
                     }
                 }
 
-                // Display the first category by default if it exists
-                const firstCategory = Object.keys(buttons)[0];
-                if (firstCategory) {
-                    toggleCommands(firstCategory);
+                // Function to toggle visibility of all commands
+                function toggleAllCommands() {
+                    const allCommandLists = document.querySelectorAll('.commands');
+                    allCommandLists.forEach(list => list.style.display = 'none');
+
+                    const allCommandList = document.createElement('div');
+                    allCommandList.id = 'commands-all';
+                    allCommandList.className = 'commands';
+                    allCommandList.innerHTML = `<h2 class="command-category">All Commands</h2>`;
+
+                    const commandDivContainer = document.createElement('div');
+                    commandDivContainer.className = 'command-container';
+
+                    allCommands.forEach(cmd => {
+                        const commandDiv = document.createElement('div');
+                        commandDiv.className = 'command';
+                        commandDiv.innerHTML = `<strong>${cmd.name}</strong><em>${cmd.description}</em><em>Required fields: ${cmd.usage}</em><em>Permissions: ${cmd.permissions}</em>`;
+                        commandDivContainer.appendChild(commandDiv);
+                    });
+
+                    allCommandList.appendChild(commandDivContainer);
+                    commandContainer.appendChild(allCommandList);
+                    allCommandList.style.display = 'block';
                 }
+
+                // Call toggleAllCommands to display all commands by default
+                toggleAllCommands();
             })
             .catch(error => console.error('Error loading commands:', error));
+
     </script>
 </body>
 </html>
