@@ -3,145 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentation</title>
-    <meta name="description" content="Documentation for Poorhub bot.">
+    <title>Poorhub Premium Documentation</title>
+    <link rel="icon" href="icon.png" type="image/png">
+    <meta name="description" content="Detailed documentation for Poorhub Premium bot commands and features." />
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212; /* Dark background */
-            color: #e4e4e7; /* Light text */
+            background-color: #000; /* Dark background */
+            color: #fff; /* White text */
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #111; /* Slightly lighter for header */
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+            color: #9b59b6;
+        }
+
+        nav {
+            margin-top: 30px;
             display: flex;
-            height: 100vh;
-            overflow: hidden;
+            justify-content: center;
+            gap: 20px;
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: #1f1f1f; /* Darker sidebar */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 2px 0 12px rgba(0, 0, 0, 0.5);
-        }
-
-        .sidebar h2 {
-            color: #fff;
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .sidebar a {
-            color: #a3a3a3;
-            text-decoration: none;
-            padding: 10px 0;
+        nav a {
             font-size: 1.1em;
-            display: block;
-            transition: color 0.2s ease;
+            color: #d0b3d7;
+            text-decoration: none;
+            text-transform: lowercase;
+            transition: color 0.3s ease;
         }
 
-        .sidebar a:hover {
-            color: #fff; /* Change to white on hover */
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
-            padding: 40px;
-            overflow-y: auto;
-        }
-
-        .main-content h1 {
+        nav a:hover {
             color: #fff;
-            font-size: 2.5em;
+        }
+
+        .content {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section h2 {
+            font-size: 2em;
             margin-bottom: 20px;
+            color: #d0b3d7;
         }
 
-        .main-content p {
-            line-height: 1.7;
-            color: #e4e4e7;
-            font-size: 1.2em;
+        .section p {
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #ccc;
         }
 
-        .code-block {
-            background-color: #2d2d2d;
-            padding: 15px;
-            border-radius: 8px;
-            color: #d0d0d0;
-            font-family: monospace;
-            overflow-x: auto;
-            margin: 20px 0;
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #111;
+            color: #fff;
+            margin-top: 50px;
         }
 
-        /* Responsive */
+        footer a {
+            color: #d0b3d7;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
         @media (max-width: 768px) {
-            .sidebar {
-                width: 200px;
+            header h1 {
+                font-size: 2.5em;
             }
-            .main-content {
-                padding: 20px;
+
+            nav a {
+                font-size: 1em;
+            }
+
+            .section h2 {
+                font-size: 1.8em;
+            }
+
+            .section p {
+                font-size: 1em;
             }
         }
 
         @media (max-width: 480px) {
-            .sidebar {
-                display: none;
+            header h1 {
+                font-size: 2em;
             }
-            .main-content {
-                padding: 15px;
+
+            nav a {
+                font-size: 0.9em;
+            }
+
+            .section h2 {
+                font-size: 1.5em;
+            }
+
+            .section p {
+                font-size: 0.9em;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <h2>Documentation</h2>
-        <a href="#introduction">Introduction</a>
-        <a href="#installation">Installation</a>
-        <a href="#commands">Commands</a>
-        <a href="#faq">FAQ</a>
-        <a href="#support">Support</a>
-    </div>
+    <header>
+        <h1>Poorhub Premium Documentation</h1>
+    </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h1>Introduction</h1>
-        <p>
-            Welcome to the Poorhub documentation. Here you'll find everything you need to know about using the Poorhub bot, from installation to advanced usage.
-        </p>
+    <nav>
+        <a href="index.html">home.</a>
+        <a href="commands.html">commands.</a>
+        <a href="docs.html">docs.</a>
+        <a href="privacy.html">privacy.</a>
+        <a href="terms.html">terms.</a>
+    </nav>
 
-        <h1 id="installation">Installation</h1>
-        <p>
-            To get started, invite Poorhub to your server using the invite link below:
-        </p>
-        <div class="code-block">
-            https://discord.com/oauth2/authorize?client_id=1081554701897711657&permissions=8&integration_type=0&scope=bot
+    <div class="content">
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>Poorhub Premium is a multipurpose Discord bot designed to help you manage your server efficiently with a wide array of features including moderation, auto-moderation, fun commands, and much more.</p>
         </div>
 
-        <h1 id="commands">Commands</h1>
-        <p>
-            Poorhub offers a wide variety of commands. Below is an example of one:
-        </p>
-        <div class="code-block">
-            !poorhub help
+        <div class="section">
+            <h2>Getting Started</h2>
+            <p>To invite the bot to your server, use the invite link provided on our website. Once added, configure your bot using the <code>setup</code> command. You can customize the bot's behavior to suit your server's needs.</p>
         </div>
 
-        <h1 id="faq">FAQ</h1>
-        <p>
-            <strong>How do I add Poorhub?</strong><br>
-            Simply use the invite link above and authorize it for your server.
-        </p>
+        <div class="section">
+            <h2>Moderation Features</h2>
+            <p>The bot comes with essential moderation commands such as <code>ban</code>, <code>kick</code>, and <code>mute</code>. You can also enable anti-nuke protection to safeguard your server from raids and attacks.</p>
+        </div>
 
-        <h1 id="support">Support</h1>
-        <p>
-            For more help, join our <a href="https://discord.gg/poorhubbot" style="color: #a3a3a3;">Discord server</a>.
-        </p>
+        <div class="section">
+            <h2>Fun Commands</h2>
+            <p>Poorhub Premium offers several fun commands like <code>afk</code>, <code>autopfp</code>, and <code>reaction triggers</code> to enhance user interaction and make your server more engaging.</p>
+        </div>
+
+        <div class="section">
+            <h2>Customizable Prefixes</h2>
+            <p>You can set custom prefixes for your server using the <code>setprefix</code> command. The bot also supports multiple prefixes, making it easy to integrate with other bots in your server.</p>
+        </div>
+
+        <div class="section">
+            <h2>Database Integration</h2>
+            <p>Poorhub Premium uses PostgreSQL for data storage, ensuring fast and reliable performance. Your server settings, user data, and logs are stored securely in our database.</p>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2024 Poorhub Premium. All rights reserved.</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+        </p>
+    </footer>
 
 </body>
 </html>
