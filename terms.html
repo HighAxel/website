@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service</title>
+    <link rel="icon" href="icon.png" type="image/png">
     <meta name="description" content="PoorHub Discord Bot Terms of Service" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -11,30 +12,35 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1d1d1f; /* Dark background */
-            color: #e4e4e7; /* Light text */
+            min-height: 100vh; /* Allow body to grow with content */
+            background-color: #000; /* Dark background */
+            color: #fff; /* White text */
+            display: flex;
+            flex-direction: column;
         }
 
-        header {
+        header, .container, footer {
+            width: 100%;
             text-align: center;
-            margin: 40px 0;
         }
 
         header h1 {
             font-size: 2.5em;
             font-weight: 500;
-            color: white;
+            color: #9b59b6;
+            margin: 40px 0;
         }
 
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 20px auto;
             padding: 20px;
+            text-align: left;
         }
 
         h2 {
             font-size: 1.8em;
-            color: white;
+            color: #9b59b6;
             margin-top: 30px;
         }
 
@@ -50,15 +56,23 @@
         }
 
         footer {
-            text-align: center;
-            margin-top: 40px;
+            margin-top: auto; /* Stick footer to the bottom */
             padding: 20px;
-            background-color: #151515;
+            background-color: #000; /* Match body background */
+            color: #9b59b6; /* Footer text color */
+            font-size: 0.9em;
+        }
+        .poorhub-link {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #9b59b6; /* Purple link */
+            font-size: 1.5em;
+            text-decoration: none;
         }
 
-        footer p {
-            color: #888;
-            font-size: 0.9em;
+        .poorhub-link:hover {
+            color: #8e44ad; /* Darker purple on hover */
         }
     </style>
 </head>
@@ -110,5 +124,6 @@
     <footer>
         <p>&copy; 2024 PoorHub Bot. All rights reserved.</p>
     </footer>
+    <a href="index.html" class="poorhub-link">Poorhub</a>
 </body>
 </html>
